@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-10-17T14:20:18.813892+00:00",
+  "pdfPages": 16,
+  "docxSha256": "ee367b644b243cfddac90ab4f9e746bb108e268b0ec5f2111132d90915b1608c",
+  "pdfSha256": "f6f1af4ce60db05892f7c418bc05309ac924c4f0cf516dd3b61ee97d7796541d",
+  "everyPageHasSequentialFooter": true,
+  "allEightTemplateSectionsPreserved": true,
+  "allRequiredFieldsRetained": true,
+  "coursePlaceholders": 9,
+  "actualSourceExcerptsVerified": 8,
+  "obsoleteGeneratedExcerptsRemoved": [],
+  "sectionGeometryMatchesTemplate": true,
+  "docxEmbeddedImages": 9,
+  "pdfAndDocxLinksMatch": true,
+  "localDocumentationTargetsExist": true,
+  "privateCredentialValuesChecked": 3,
+  "credentialValueLeaksFound": 0,
+  "visualReview": "Every final page rendered from Word-exported PDF with bundled Poppler; inspected for layout, figures, code, tables and footer.",
+  "rendererFallback": "Packaged render_docx.py unavailable: Windows runtime has no LibreOffice. Installed Microsoft Word 16 exported actual DOCX; no separate PDF typesetting.",
+  "remainingInputs": [
+    "Actual course duration and progress/completion evidence",
+    "Verified public deployment only if required"
+  ]
+}

@@ -1,0 +1,6 @@
+      const result = await api.add(text, request.current.id);
+      if (result.status === 'saved') {
+        setItems(old => [...old, { role: 'assistant', kind: 'saved', text: 'Saved to MongoDB', expense: result.expense }]);
+        setMessage(''); request.current = null; onSaved();
+      } else { setItems(old => [...old, { role: 'assistant', kind: result.status, text: result.message }]); if (result.status === 'clarification') request.current = null; }
+    } catch (error) { setItems(old => [...old, { role: 'assistant', kind: 'error', text: (error as Error).message }]); }

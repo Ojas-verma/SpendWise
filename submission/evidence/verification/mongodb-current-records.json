@@ -1,0 +1,46 @@
+{
+  "capturedAt": "2026-10-17T08:44:41.074Z",
+  "database": "spendwise",
+  "collection": "expenses",
+  "query": "db.expenses.find({})",
+  "recordCount": 1,
+  "records": [
+    {
+      "_id": "6ad3289ea7ad8b8f52e1dfbb",
+      "id": "36355c5d-8d99-44c3-ba25-c00fe928b2fb",
+      "amount": 250,
+      "currency": "INR",
+      "category": "Food & drinks",
+      "description": "lunch",
+      "date": "2026-10-17",
+      "originalMessage": "Spent ₹250 on lunch today.",
+      "createdAt": "2026-10-17T07:49:50.065Z"
+    }
+  ],
+  "indexes": [
+    {
+      "v": 2,
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "v": 2,
+      "key": {
+        "id": 1
+      },
+      "name": "unique_request_id",
+      "unique": true
+    },
+    {
+      "v": 2,
+      "key": {
+        "date": -1,
+        "category": 1
+      },
+      "name": "date_category"
+    }
+  ],
+  "testCollectionCount": 0
+}

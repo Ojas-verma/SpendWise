@@ -1,0 +1,51 @@
+name: spendwise
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: spendwise-mongodb
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${MONGO_HOST_PORT:-27018}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-spendwise_admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:?Run npm run setup:mongodb first}
+      MONGO_APP_USERNAME: ${MONGO_APP_USERNAME:-spendwise_app}
+      MONGO_APP_PASSWORD: ${MONGO_APP_PASSWORD:?Run npm run setup:mongodb first}
+      MONGO_DATABASE: ${MONGO_DATABASE:-spendwise}
+    volumes:
+      - mongodb_data:/data/db
+      - ./docker/mongo-init.js:/docker-entrypoint-initdb.d/10-spendwise.js:ro
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+  n8n:
+    image: ${N8N_IMAGE:-n8nio/n8n:spendwise-local}
+    pull_policy: never
+    container_name: spendwise-n8n
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:5679:5678"
+    environment:
+      TZ: Asia/Kolkata
+      GENERIC_TIMEZONE: Asia/Kolkata
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_EDITOR_BASE_URL: http://localhost:5679
+      WEBHOOK_URL: http://localhost:5679/
+      N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS: "true"
+      N8N_DIAGNOSTICS_ENABLED: "false"
+      N8N_PERSONALIZATION_ENABLED: "false"
+    volumes:
+      - n8n_data:/home/node/.n8n
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+volumes:
+  mongodb_data:
+    name: spendwise_mongodb_data
+  n8n_data:
+    external: true
+    name: spendwise_n8n_data

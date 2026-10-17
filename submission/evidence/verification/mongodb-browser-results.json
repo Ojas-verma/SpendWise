@@ -1,0 +1,74 @@
+{
+  "testedAt": "2026-10-17T07:00:41.070Z",
+  "database": "spendwise",
+  "collection": "expense_integration_tests",
+  "productionCollectionUntouched": true,
+  "expenses": [
+    {
+      "id": "b8a822a7-ecea-4759-95b3-a3a0fa0f7ada",
+      "date": "2026-10-17",
+      "cost": 200,
+      "currency": "INR",
+      "category": "Transport",
+      "descr": "Transport",
+      "msg": "I spent ₹200 on transport today."
+    },
+    {
+      "id": "2ad4337b-a71d-4c1f-9149-161fa001e822",
+      "date": "2026-10-17",
+      "cost": 250,
+      "currency": "INR",
+      "category": "Food & drinks",
+      "descr": "lunch",
+      "msg": "Spent ₹250 on lunch today."
+    },
+    {
+      "id": "1ddea8e3-d841-4a7e-bb12-47f9df0bc16c",
+      "date": "2026-10-16",
+      "cost": 120,
+      "currency": "INR",
+      "category": "Transport",
+      "descr": "auto",
+      "msg": "Yesterday I paid ₹120 for an auto."
+    },
+    {
+      "id": "ca3943be-1f3d-4530-beaa-74ca8715babf",
+      "date": "2026-10-12",
+      "cost": 500,
+      "currency": "INR",
+      "category": "Groceries",
+      "descr": "Groceries",
+      "msg": "Add ₹500 for groceries on 12 October."
+    }
+  ],
+  "total": 1070,
+  "replayAndConflictPassed": true,
+  "databaseUniqueIndexPassed": true,
+  "databaseSchemaPassed": true,
+  "clarificationsPassed": true,
+  "outageNeverConfirmedSave": true,
+  "persistenceAcrossRestartPassed": true,
+  "testedDate": "2026-10-17",
+  "browserStoredExpense": {
+    "id": "5af576fe-621e-4016-b169-070ebe4230c8",
+    "amount": 40,
+    "date": "2026-10-17",
+    "originalMessage": "Spent ₹40 on coffee today."
+  },
+  "personalRecordCount": 0,
+  "browserSaveReceiptObserved": true,
+  "browserDashboard": {
+    "total": 1110,
+    "transactions": 5,
+    "average": 222
+  },
+  "browserSearchAndCategoryFilterPassed": true,
+  "browserBudgetProgress": {
+    "category": "Transport",
+    "limit": 500,
+    "spent": 320,
+    "remaining": 180,
+    "percent": 64
+  },
+  "testRecordsCleaned": true
+}

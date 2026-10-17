@@ -1,0 +1,82 @@
+[
+  {
+    "number": 1,
+    "title": "Expense extraction schema",
+    "source": "shared/domain.ts",
+    "startLine": 6,
+    "endLine": 12,
+    "sourceSha256": "4e1f03e9f38d613d56735eff8bc0240be309f5395a6f89253d33e28b9b4f27e1",
+    "excerpt": "01-domain-L6-L12.txt",
+    "excerptSha256": "1a8132ab693f7373c2d18f1a8a1809a78b869917ad0db63dcb5aad8ab953866a"
+  },
+  {
+    "number": 2,
+    "title": "Native structured-output request",
+    "source": "shared/domain.ts",
+    "startLine": 53,
+    "endLine": 54,
+    "sourceSha256": "4e1f03e9f38d613d56735eff8bc0240be309f5395a6f89253d33e28b9b4f27e1",
+    "excerpt": "02-domain-L53-L54.txt",
+    "excerptSha256": "9f6743ca261df581717c82e52bceac240c0f19a561f636a9a564a4811950afdb"
+  },
+  {
+    "number": 3,
+    "title": "Date and description validation",
+    "source": "shared/domain.ts",
+    "startLine": 68,
+    "endLine": 71,
+    "sourceSha256": "4e1f03e9f38d613d56735eff8bc0240be309f5395a6f89253d33e28b9b4f27e1",
+    "excerpt": "03-domain-L68-L71.txt",
+    "excerptSha256": "492bd889d43bcb3fa94476223fc863c0f4e6bb2565ce10aedf4a5eb90d6249f7"
+  },
+  {
+    "number": 4,
+    "title": "Authenticated workflow integration",
+    "source": "server/integration.ts",
+    "startLine": 7,
+    "endLine": 11,
+    "sourceSha256": "0cc7f75d31218f86d9ca4122ff50b481220ffff840c1a4247269c7852bacb858",
+    "excerpt": "04-integration-L7-L11.txt",
+    "excerptSha256": "119e81b1cb51ec55dc4d1de2d5957eed941af618036a9106b72ed4e9f3a85a30"
+  },
+  {
+    "number": 5,
+    "title": "Readback before a confirmed save",
+    "source": "scripts/build-workflow.mjs",
+    "startLine": 46,
+    "endLine": 51,
+    "sourceSha256": "01ba207f9d4cb79aa7b3c660217c3834d14701afd08f5df5d4efdeb881a114ff",
+    "excerpt": "05-build-workflow-L46-L51.txt",
+    "excerptSha256": "a6baa41e2d5ff15db3e41847ae05a84c26976f2c0ea4ca34bd4ae0898da7b9e7"
+  },
+  {
+    "number": 6,
+    "title": "Strict collection and indexes",
+    "source": "docker/mongo-init.js",
+    "startLine": 21,
+    "endLine": 25,
+    "sourceSha256": "48d7bf11a14de467b6b2a823f9463984692790717af9a2703ccd0137ec5398de",
+    "excerpt": "06-mongo-init-L21-L25.txt",
+    "excerptSha256": "6e59555602016df98aaa5a1682033fc1d43e25966ed7189b73f83cf6b21f4350"
+  },
+  {
+    "number": 7,
+    "title": "History API backed by the database",
+    "source": "server/app.ts",
+    "startLine": 33,
+    "endLine": 35,
+    "sourceSha256": "cb34530d588b25bfb53fcc3690cf7441dd542483ea9b18dcb08c92ffb9a822f2",
+    "excerpt": "07-app-L33-L35.txt",
+    "excerptSha256": "f0052095d6e2e5b8e0176dd9ecb1140e8a4f55fa927b8896a0ac37f525fc82bb"
+  },
+  {
+    "number": 8,
+    "title": "Frontend receipt and refresh",
+    "source": "src/components.tsx",
+    "startLine": 25,
+    "endLine": 30,
+    "sourceSha256": "29a8fdd43b0fdf74e042c28f32310c720abae65c7e98dfc1c383eddac54cd3c1",
+    "excerpt": "08-components-L25-L30.txt",
+    "excerptSha256": "399563d3db144d328fec66182e33d09ccd432f5b7b27649633eb5b7ea34ca528"
+  }
+]

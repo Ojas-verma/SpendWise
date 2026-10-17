@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-17T14:20:18.813892+00:00",
+  "docxAndPdfHyperlinkTargetsMatch": true,
+  "relativeTargets": [
+    {
+      "target": "../README.md",
+      "exists": true
+    },
+    {
+      "target": "../docs/API.md",
+      "exists": true
+    },
+    {
+      "target": "../docs/VERIFICATION.md",
+      "exists": true
+    },
+    {
+      "target": "README.md",
+      "exists": true
+    }
+  ],
+  "officialReferences": [
+    {
+      "url": "https://docs.ollama.com/capabilities/structured-outputs",
+      "check": "Content retrieved successfully using web open on 2026-10-17"
+    },
+    {
+      "url": "https://docs.n8n.io/integrations/builtin/app-nodes/n8n-nodes-base.mongodb",
+      "check": "Content retrieved successfully using web open on 2026-10-17"
+    },
+    {
+      "url": "https://www.mongodb.com/docs/manual/core/schema-validation/",
+      "check": "Content retrieved successfully using web open on 2026-10-17"
+    },
+    {
+      "url": "https://react.dev/",
+      "check": "Content retrieved successfully using web open on 2026-10-17"
+    },
+    {
+      "url": "https://expressjs.com/",
+      "check": "Content retrieved successfully using web open on 2026-10-17"
+    },
+    {
+      "url": "https://docs.docker.com/compose/",
+      "check": "Content retrieved successfully using web open on 2026-10-17"
+    }
+  ],
+  "localApplication": {
+    "url": "http://localhost:3000/",
+    "check": "Actual browser dashboard and read-only health/history responses verified"
+  },
+  "n8nWorkflow": {
+    "url": "http://localhost:5679/workflow/SpendWiseLocalV1",
+    "check": "Actual editor opened; workflow Published"
+  },
+  "github": {
+    "repository": "https://github.com/pratiklakra38/Spendwise",
+    "check": "Student-supplied public repository verified using GitHub connector; connected account has push access."
+  },
+  "publicDeployment": {
+    "status": "Not verified; no URL supplied"
+  }
+}

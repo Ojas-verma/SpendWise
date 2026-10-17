@@ -1,0 +1,3 @@
+  app.get('/api/expenses', async (_req, res, next) => {
+    try { res.json({ ...await records(), source: 'mongodb', today: localDate(new Date(), config.timezone) }); } catch (e) { next(e); }
+  });

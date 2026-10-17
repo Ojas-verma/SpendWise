@@ -1,0 +1,7 @@
+export const extractionSchema = {
+  type: 'object', additionalProperties: false,
+  properties: {
+    cost: { type: ['number', 'null'] }, date: { type: ['string', 'null'] },
+    currency: { type: ['string', 'null'] }, category: { type: 'string', enum: [...categories] },
+    descr: { type: 'string' }
+  }, required: ['cost', 'date', 'currency', 'category', 'descr']

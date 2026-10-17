@@ -1,0 +1,70 @@
+import { buildSync } from 'esbuild';
+import { mkdirSync, writeFileSync } from 'node:fs';
+const testing=process.argv.includes('--test');
+const collection=testing?'expense_integration_tests':'expenses';
+const path=testing?'spendwise-e2e':'spendwise-v1';
+const esm=buildSync({entryPoints:['shared/domain.ts'],bundle:true,write:false,format:'esm',platform:'neutral',target:'es2022'}).outputFiles[0].text;
+// Plain functions work within n8n's restricted Code sandbox without reflective exports.
+const lib=esm.replace(/export\s*\{[\s\S]*?\};?\s*$/,'const SpendWise={amountsInMessage,categories,extractionRequest,extractionSchema,localDate,normalizeRows,resolveDate,validDate,validateExtraction};');
+const nodes=[],connections={};
+const add=(name,type,parameters,position,extras={})=>nodes.push({id:name.toLowerCase().replaceAll(/[^a-z0-9]/g,'-'),name,type:'n8n-nodes-base.'+type,typeVersion:({webhook:2,code:2,if:2.2,httpRequest:4.2,mongoDb:1.3,respondToWebhook:1.4})[type],position,parameters,...extras});
+const code=(name,source,position)=>add(name,'code',{jsCode:lib+'\n'+source},position,/failure$/i.test(name)?{}:{onError:'continueErrorOutput'});
+const link=(from,to,branch=0)=>{connections[from]||={main:[]};connections[from].main[branch]||=[];connections[from].main[branch].push({node:to,type:'main',index:0});};
+const check=(name,expression,position)=>add(name,'if',{conditions:{options:{caseSensitive:true,leftValue:'',typeValidation:'strict',version:2},conditions:[{id:name,leftValue:expression,rightValue:true,operator:{type:'boolean',operation:'true',singleValue:true}}],combinator:'and'},options:{}},position);
+const credentials={mongoDb:{id:'spendwiseMongoDb',name:'SpendWise MongoDB'}};
+// Fail closed: this n8n MongoDB node can forward original input on connection
+// failures under continue-on-error. Never let it continue after a database error.
+const find=(name,query,position,sort={})=>add(name,'mongoDb',{operation:'find',collection,query,options:{sort:JSON.stringify(sort)}},position,{credentials,onError:'stopWorkflow',alwaysOutputData:true});
+const idQuery='={{ JSON.stringify({id: $("Validate expense").first().json.expense.id}) }}';
+add('Expense API','webhook',{httpMethod:'POST',path,authentication:'headerAuth',responseMode:'responseNode',options:{}},[0,300],{webhookId:path,credentials:{httpHeaderAuth:{id:'spendwiseWebhookAuth',name:'SpendWise Webhook'}}});
+check('Read request','={{ $json.body.action === "list" }}',[220,300]);
+find('Read expenses','{}',[460,40],{date:-1,createdAt:-1});
+code('List response',`if($input.all().some(i=>i.json.error||(Object.keys(i.json).length&&!i.json._id))) throw new Error('MongoDB read failed');
+return [{json:{status:'ok',...SpendWise.normalizeRows($input.all().map(i=>i.json))}}];`,[700,40]);
+code('Prepare extraction',`const b=$('Expense API').first().json.body;
+if(!['create','parse'].includes(b.action)||typeof b.message!=='string'||!b.message.trim()||b.message.length>2000||!/^[a-zA-Z0-9-]{16,80}$/.test(b.requestId||'')) throw new Error('Invalid expense request');
+const today=SpendWise.localDate(new Date(),'Asia/Kolkata');
+return [{json:{message:b.message.trim(),requestId:b.requestId,today,ollama:SpendWise.extractionRequest(b.message.trim(),today,'llama3.2:3b')}}];`,[460,460]);
+add('Ollama structured extraction','httpRequest',{method:'POST',url:'http://host.docker.internal:11434/api/chat',sendBody:true,specifyBody:'json',jsonBody:'={{ $json.ollama }}',options:{timeout:120000}},[700,460],{onError:'continueErrorOutput'});
+code('Validate expense',`const input=$('Prepare extraction').first().json;
+let parsed;try{parsed=JSON.parse($json.message.content);}catch{return [{json:{status:'clarification',message:'The AI returned invalid JSON. Please try again with an amount and date.'}}];}
+const result=SpendWise.validateExtraction(parsed,input.message,input.today,input.requestId);
+return [{json:result.expense?{status:'validated',expense:result.expense}:{status:'clarification',message:result.message}}];`,[940,460]);
+check('Expense valid','={{ $json.status === "validated" }}',[1180,460]);
+check('Parse only request','={{ $("Expense API").first().json.body.action === "parse" }}',[1180,180]);
+code('Parse response',`return [{json:{status:'parsed',expense:$json.expense}}];`,[1420,180]);
+find('Check transaction ID',idQuery,[1420,460]);
+code('Prepare document',`if($input.all().some(i=>i.json.error||(Object.keys(i.json).length&&!i.json._id))) throw new Error('MongoDB transaction lookup failed');
+const e=$('Validate expense').first().json.expense;
+const existing=$input.all().find(i=>i.json.id===e.id);
+if(existing){const p=SpendWise.normalizeRows([existing.json]).expenses[0];if(!p||['id','date','cost','currency','category','descr','msg'].some(k=>p[k]!==e[k])) throw new Error('Transaction ID conflict');return [{json:{alreadySaved:true,status:'saved',expense:p}}];}
+return [{json:{alreadySaved:false,id:e.id,amount:e.cost,currency:e.currency,category:e.category,description:e.descr,date:e.date,originalMessage:e.msg,createdAt:new Date().toISOString()}}];`,[1660,460]);
+check('Already saved','={{ $json.alreadySaved === true }}',[1900,460]);
+add('Insert expense','mongoDb',{operation:'insert',collection,fields:'id,amount,currency,category,description,date,originalMessage,createdAt',options:{}},[2140,460],{credentials,onError:'stopWorkflow'});
+// Read the real stored document after insertion; never echo a proposed AI record.
+find('Verify stored expense',idQuery,[2380,460]);
+code('Save confirmed',`if($input.all().some(i=>i.json.error)) throw new Error('MongoDB save could not be read back');
+const expected=$('Validate expense').first().json.expense;
+const stored=$input.all().find(i=>i.json._id&&i.json.id===expected.id);
+const actual=stored&&SpendWise.normalizeRows([stored.json]).expenses[0];
+if(!actual||['id','date','cost','currency','category','descr','msg'].some(k=>actual[k]!==expected[k])) throw new Error('MongoDB save confirmation mismatch');
+return [{json:{status:'saved',expense:actual}}];`,[2620,460]);
+code('Parse failure',`return [{json:{status:'error',code:'PARSE_FAILED',message:'Local AI extraction failed. No expense was sent to MongoDB. Check Ollama and the n8n execution.'}}];`,[940,780]);
+code('Read failure',`return [{json:{status:'error',code:'DB_READ_FAILED',message:'MongoDB could not be read. Check the database service and n8n MongoDB credential.'}}];`,[1180,0]);
+code('Lookup failure',`return [{json:{status:'error',code:'DB_LOOKUP_FAILED',message:'MongoDB could not verify the transaction ID. No write was attempted. Check the database connection and retry.'}}];`,[1900,780]);
+code('Database failure',`return [{json:{status:'error',code:'DB_WRITE_UNCONFIRMED',message:'MongoDB did not confirm the save. Check the database and n8n execution before retrying.'}}];`,[2620,780]);
+add('Return response','respondToWebhook',{respondWith:'json',responseBody:'={{ $json }}',options:{}},[2900,180]);
+link('Expense API','Read request');link('Read request','Read expenses');link('Read request','Prepare extraction',1);
+link('Read expenses','List response');link('List response','Return response');link('List response','Read failure',1);link('Read failure','Return response');
+link('Prepare extraction','Ollama structured extraction');link('Prepare extraction','Parse failure',1);
+link('Ollama structured extraction','Validate expense');link('Ollama structured extraction','Parse failure',1);
+link('Validate expense','Expense valid');link('Validate expense','Parse failure',1);link('Expense valid','Parse only request');link('Expense valid','Return response',1);
+link('Parse only request','Parse response');link('Parse only request','Check transaction ID',1);link('Parse response','Return response');link('Parse response','Parse failure',1);link('Parse failure','Return response');
+link('Check transaction ID','Prepare document');link('Prepare document','Already saved');link('Prepare document','Lookup failure',1);link('Lookup failure','Return response');
+link('Already saved','Return response');link('Already saved','Insert expense',1);link('Insert expense','Verify stored expense');
+link('Verify stored expense','Save confirmed');link('Save confirmed','Return response');link('Save confirmed','Database failure',1);link('Database failure','Return response');
+const workflow={id:testing?'SpendWiseMongoE2E':'SpendWiseLocalV1',name:testing?'SpendWise AI · Isolated MongoDB integration tests':'SpendWise AI · Validated expense API',active:false,nodes,connections,settings:{executionOrder:'v1',timezone:'Asia/Kolkata',saveDataErrorExecution:'all',saveDataSuccessExecution:'all',executionTimeout:180},tags:[]};
+mkdirSync(testing?'.local':'n8n',{recursive:true});
+const target=testing?'.local/spendwise-e2e.workflow.json':'n8n/spendwise.workflow.json';
+writeFileSync(target,JSON.stringify(workflow,null,2));
+console.log(`Generated ${target}: MongoDB ${collection}; no embedded secrets.`);

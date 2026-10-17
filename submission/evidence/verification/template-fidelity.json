@@ -1,0 +1,37 @@
+{
+  "referenceSha256": "9714bf699b47e6dd7219421fb63178a61282047da946e0e80a0b62d2a643fc76",
+  "preservedParts": [
+    "_rels/.rels",
+    "word/endnotes.xml",
+    "word/footnotes.xml",
+    "word/footer1.xml",
+    "word/theme/theme1.xml",
+    "word/styles.xml",
+    "word/numbering.xml",
+    "customXml/_rels/item1.xml.rels",
+    "customXml/itemProps1.xml",
+    "word/fontTable.xml",
+    "customXml/item1.xml",
+    "word/webSettings.xml",
+    "docProps/app.xml"
+  ],
+  "preservedPartBytesMatch": true,
+  "editableParts": [
+    "[Content_Types].xml",
+    "docProps/core.xml",
+    "word/_rels/document.xml.rels",
+    "word/document.xml",
+    "word/settings.xml"
+  ],
+  "sectionCount": 1,
+  "requiredHeadingOrder": [
+    "1. Introduction to Agentic AI",
+    "2. Understanding of Agentic AI",
+    "3. Courses Completed (multiple courses as applicable)",
+    "4. Problem Statement",
+    "5. Proposed Solution",
+    "6. Implementation",
+    "7. Final Project Demonstration",
+    "8. Conclusion"
+  ]
+}

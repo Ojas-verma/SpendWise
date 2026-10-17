@@ -1,0 +1,34 @@
+{
+  "name": "spendwise-ai",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch --import tsx server/index.ts",
+    "build": "tsc --noEmit && vite build",
+    "start": "node --import tsx server/index.ts --production",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "workflow:build": "node scripts/build-workflow.mjs",
+    "test:ollama": "node --import tsx scripts/test-ollama.ts",
+    "setup:mongodb": "node scripts/setup-mongodb.mjs",
+    "test:e2e": "node --import tsx scripts/test-mongodb.ts"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsx": "^4.20.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.10.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "esbuild": "^0.25.11",
+    "mongodb": "^6.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  }
+}

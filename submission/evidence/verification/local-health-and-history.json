@@ -1,0 +1,29 @@
+{
+  "capturedAt": "2026-10-17T08:44:41.635Z",
+  "health": {
+    "n8n": true,
+    "ollama": true,
+    "mongodb": true,
+    "configured": true,
+    "model": "llama3.2:3b",
+    "timezone": "Asia/Kolkata",
+    "n8nUrl": "http://localhost:5679",
+    "today": "2026-10-17"
+  },
+  "history": {
+    "expenses": [
+      {
+        "id": "36355c5d-8d99-44c3-ba25-c00fe928b2fb",
+        "date": "2026-10-17",
+        "cost": 250,
+        "currency": "INR",
+        "category": "Food & drinks",
+        "descr": "lunch",
+        "msg": "Spent ₹250 on lunch today."
+      }
+    ],
+    "invalidRows": 0,
+    "source": "mongodb",
+    "today": "2026-10-17"
+  }
+}

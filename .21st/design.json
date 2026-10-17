@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "project": {
+    "name": "SpendWise",
+    "productType": "Local personal finance dashboard",
+    "stack": ["React", "TypeScript", "Vite", "Express"]
+  },
+  "sources": {
+    "tokens": [],
+    "components": [],
+    "assets": [],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {"background":"#f6f7f3","surface":"#ffffff","primary":"#1c654d","text":"#26372f"},
+    "typography": {"body":"DM Sans, sans-serif","headings":"Manrope, sans-serif"},
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {},
+    "density": "desktop first with responsive single-column layouts"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [],
+    "avoid": []
+  },
+  "decisions": ["User requested neutral surfaces with emerald accents and clear hierarchy.","Use honest empty and unavailable states; no demo expense fallback.","Catalog lookup was blocked by automatic approval review; all interface components were authored locally without external project-context upload."],
+  "evidence": [],
+  "generatedAt": "2026-10-17T05:25:00.658Z"
+}

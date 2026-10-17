@@ -1,0 +1,5 @@
+  try {
+    response = await fetch(`${config.n8n}/webhook/${webhookPath}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'X-SpendWise-Key': config.secret },
+      body: JSON.stringify(body), signal: AbortSignal.timeout(readOnly ? 15000 : 150000)
+    });

@@ -1,0 +1,6 @@
+code('Save confirmed',`if($input.all().some(i=>i.json.error)) throw new Error('MongoDB save could not be read back');
+const expected=$('Validate expense').first().json.expense;
+const stored=$input.all().find(i=>i.json._id&&i.json.id===expected.id);
+const actual=stored&&SpendWise.normalizeRows([stored.json]).expenses[0];
+if(!actual||['id','date','cost','currency','category','descr','msg'].some(k=>actual[k]!==expected[k])) throw new Error('MongoDB save confirmation mismatch');
+return [{json:{status:'saved',expense:actual}}];`,[2620,460]);

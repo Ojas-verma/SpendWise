@@ -1,0 +1,2 @@
+export function extractionRequest(message: string, today: string, model: string) {
+  return { model, stream: false, format: extractionSchema, options: { temperature: 0, num_predict: 240, num_ctx: 2048 }, messages: [

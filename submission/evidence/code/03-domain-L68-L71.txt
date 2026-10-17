@@ -1,0 +1,4 @@
+  const date = resolveDate(message, today);
+  if (!date || date > today) return { message: 'Please specify the expense date as YYYY-MM-DD or “yesterday”. Future expenses cannot be recorded.' };
+  if (typeof p.descr !== 'string' || !p.descr.trim() || p.descr.length > 160 || !categories.includes(p.category as Category)) return { message: 'What was this expense for? Please add a short description.' };
+  return { expense: { id, date, cost: p.cost, currency: 'INR', category: p.category as Category, descr: p.descr.trim(), msg: message } };

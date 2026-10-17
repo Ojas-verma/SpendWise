@@ -1,0 +1,5 @@
+for (const name of ['expenses','expense_integration_tests']) {
+  appDb.createCollection(name, { validator: { $jsonSchema: schema }, validationLevel: 'strict', validationAction: 'error' });
+  appDb.getCollection(name).createIndex({ id: 1 }, { unique: true, name: 'unique_request_id' });
+  appDb.getCollection(name).createIndex({ date: -1, category: 1 }, { name: 'date_category' });
+}

@@ -1,0 +1,141 @@
+{
+  "createdAt": "2026-10-17T14:20:18.813892+00:00",
+  "scope": "Genuine local screenshots, source-derived architecture, exact code excerpts and sanitized verification outputs",
+  "files": [
+    {
+      "path": "architecture.png",
+      "bytes": 77952,
+      "sha256": "b2896f878f07a1b1a0b4a638a4682cc8fffb84f7c3ca2671bfe02f3609c276e7"
+    },
+    {
+      "path": "code/01-domain-L6-L12.txt",
+      "bytes": 365,
+      "sha256": "1a8132ab693f7373c2d18f1a8a1809a78b869917ad0db63dcb5aad8ab953866a"
+    },
+    {
+      "path": "code/02-domain-L53-L54.txt",
+      "bytes": 216,
+      "sha256": "9f6743ca261df581717c82e52bceac240c0f19a561f636a9a564a4811950afdb"
+    },
+    {
+      "path": "code/03-domain-L68-L71.txt",
+      "bytes": 544,
+      "sha256": "492bd889d43bcb3fa94476223fc863c0f4e6bb2565ce10aedf4a5eb90d6249f7"
+    },
+    {
+      "path": "code/04-integration-L7-L11.txt",
+      "bytes": 279,
+      "sha256": "119e81b1cb51ec55dc4d1de2d5957eed941af618036a9106b72ed4e9f3a85a30"
+    },
+    {
+      "path": "code/05-build-workflow-L46-L51.txt",
+      "bytes": 543,
+      "sha256": "a6baa41e2d5ff15db3e41847ae05a84c26976f2c0ea4ca34bd4ae0898da7b9e7"
+    },
+    {
+      "path": "code/06-mongo-init-L21-L25.txt",
+      "bytes": 383,
+      "sha256": "6e59555602016df98aaa5a1682033fc1d43e25966ed7189b73f83cf6b21f4350"
+    },
+    {
+      "path": "code/07-app-L33-L35.txt",
+      "bytes": 197,
+      "sha256": "f0052095d6e2e5b8e0176dd9ecb1140e8a4f55fa927b8896a0ac37f525fc82bb"
+    },
+    {
+      "path": "code/08-components-L25-L30.txt",
+      "bytes": 578,
+      "sha256": "399563d3db144d328fec66182e33d09ccd432f5b7b27649633eb5b7ea34ca528"
+    },
+    {
+      "path": "code/manifest.json",
+      "bytes": 2943,
+      "sha256": "a1d665949c148be3e1be09a88c2a70a09f547f6c15c6581bba0c8cfdc3c94ab0"
+    },
+    {
+      "path": "screenshots/01-local-application.png",
+      "bytes": 29446,
+      "sha256": "5ce18394a6b3ee98d3def8779f5d299955722ee12797723cc9b48bb8a42d909f"
+    },
+    {
+      "path": "screenshots/02-expense-entry.png",
+      "bytes": 20767,
+      "sha256": "cbcc6de3da23b0de1b16338d4e3cee55cdb762ba84ef9e42d63f06e0301cfe1f"
+    },
+    {
+      "path": "screenshots/03-dashboard-charts.png",
+      "bytes": 20480,
+      "sha256": "334461e233bfa9d546e0018cbb475cefd6a5339ac1220bed36b08fd64d72d6d7"
+    },
+    {
+      "path": "screenshots/04-transaction-history.png",
+      "bytes": 28638,
+      "sha256": "dd518382550849b85769ad1897f75ade6dbdd5df066c2c263062878074285f12"
+    },
+    {
+      "path": "screenshots/05-stored-expense-details.png",
+      "bytes": 20447,
+      "sha256": "fdab68ccad85f97bfa0dc0ea4b8f63d121200d6d583e439193c5a029f2455a99"
+    },
+    {
+      "path": "screenshots/06-n8n-workflow.png",
+      "bytes": 26532,
+      "sha256": "57ba84263635070babfde2bcdeb40549d9073f19bef597087645ac2c803e8774"
+    },
+    {
+      "path": "screenshots/07-local-connections.png",
+      "bytes": 26899,
+      "sha256": "a70fe73a3fd7e83223f1e21b12b5ced9eccc3ba68a291f17d840955bdb363d20"
+    },
+    {
+      "path": "screenshots/08-mongodb-query-focus.png",
+      "bytes": 43647,
+      "sha256": "7777d6957f22b873460e34a822ab88084442a973343b3fa9e7e427e9939cce8d"
+    },
+    {
+      "path": "screenshots/08-mongodb-query.png",
+      "bytes": 46719,
+      "sha256": "b0c5ef017679cc6acda0acd59cecdedb2bc3178aab2a78dca6983cb5ef43fb5e"
+    },
+    {
+      "path": "verification/link-checks.json",
+      "bytes": 1900,
+      "sha256": "c1be14852973e613217ac42c2cdc5550d2436198624b89ea453885e43aa048c7"
+    },
+    {
+      "path": "verification/local-health-and-history.json",
+      "bytes": 647,
+      "sha256": "5a2a966c926c64dd520dc21e70d324807d38f8baffb98831c386f5d8ac161d9e"
+    },
+    {
+      "path": "verification/mongodb-browser-results.json",
+      "bytes": 1972,
+      "sha256": "e2363566991e5e2e0ee35e8408312a159470589f3f84462b155e728a89d72c62"
+    },
+    {
+      "path": "verification/mongodb-current-records.json",
+      "bytes": 905,
+      "sha256": "d2fc79dbce9d4fd6c194c3a84cf0544849620c8ad00e9ae28ec80b1ac88abc6a"
+    },
+    {
+      "path": "verification/mongodb-e2e-results.json",
+      "bytes": 1476,
+      "sha256": "2cab0884ed19bfce0b404e8036342c84faeec1294d0b8c61b4a6be03544df9e7"
+    },
+    {
+      "path": "verification/mongodb-query-view.html",
+      "bytes": 966,
+      "sha256": "9dcc6039e9d3b74659fc4b02acd47718648ecadf8647152fe35cbe0f6171c702"
+    },
+    {
+      "path": "verification/package-verification.json",
+      "bytes": 1149,
+      "sha256": "9f3e742b86eb0514c9bba22c108120710e91dcd7f32768ff307a299e0fd1ec2d"
+    },
+    {
+      "path": "verification/template-fidelity.json",
+      "bytes": 991,
+      "sha256": "7cf0eb313b2af38b6a95e77a050aface6443619ef24e008d476fc47c19b66210"
+    }
+  ]
+}

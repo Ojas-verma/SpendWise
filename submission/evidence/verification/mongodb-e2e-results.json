@@ -1,0 +1,54 @@
+{
+  "testedAt": "2026-10-17T07:05:23.041Z",
+  "database": "spendwise",
+  "collection": "expense_integration_tests",
+  "productionCollectionUntouched": true,
+  "expenses": [
+    {
+      "id": "99b7341e-761c-400d-b59c-770ef2f85650",
+      "date": "2026-10-17",
+      "cost": 200,
+      "currency": "INR",
+      "category": "Transport",
+      "descr": "Transport",
+      "msg": "I spent ₹200 on transport today."
+    },
+    {
+      "id": "93fb8a8d-2bb7-489f-a872-ab71695f5bc1",
+      "date": "2026-10-17",
+      "cost": 250,
+      "currency": "INR",
+      "category": "Food & drinks",
+      "descr": "lunch",
+      "msg": "Spent ₹250 on lunch today."
+    },
+    {
+      "id": "dd206ed6-9cb5-41c7-82b2-32c1c2bfe30d",
+      "date": "2026-10-16",
+      "cost": 120,
+      "currency": "INR",
+      "category": "Transport",
+      "descr": "auto",
+      "msg": "Yesterday I paid ₹120 for an auto."
+    },
+    {
+      "id": "27ae49de-1a4d-47bb-b501-849caabf2239",
+      "date": "2026-10-12",
+      "cost": 500,
+      "currency": "INR",
+      "category": "Groceries",
+      "descr": "Groceries",
+      "msg": "Add ₹500 for groceries on 12 October."
+    }
+  ],
+  "total": 1070,
+  "replayAndConflictPassed": true,
+  "databaseUniqueIndexPassed": true,
+  "databaseSchemaPassed": true,
+  "clarificationsPassed": true,
+  "outageNeverConfirmedSave": true,
+  "persistenceAcrossRestartPassed": true,
+  "testedDate": "2026-10-17",
+  "testRecordsCleaned": true,
+  "personalRecordCount": 0
+}
