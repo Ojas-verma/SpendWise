@@ -2,8 +2,6 @@
 
 SpendWise turns natural-language expense messages into validated MongoDB records using your existing local Ollama `llama3.2:3b` model and n8n workflow. The React dashboard reads real transactions through the backend and n8n. Google Sheets and Google OAuth are no longer required.
 
-Project repository: [pratiklakra38/Spendwise](https://github.com/pratiklakra38/Spendwise). This repository contains the source and academic documents; the running application is local, and no public application deployment is claimed.
-
 The backend is **Node.js/TypeScript**, not Python. Expense extraction and category tags are defined in [`shared/domain.ts`](shared/domain.ts) and used by the generated [`n8n workflow`](n8n/spendwise.workflow.json). See the [code map](docs/CODE_MAP.md) for the backend, transactions, validation and persistence files. The [Python report tools](scripts/report/README.md) are included separately and are optional for running the application.
 
 ## Local addresses
